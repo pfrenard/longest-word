@@ -27,4 +27,8 @@ class TestGame(unittest.TestCase):
         self.assertIs(new_game.is_valid('NOTWORKING'),False)# should return an error
         self.assertEqual(new_game.grid, list('KWEUEAKRZ'))  # test grid is not changed
 
+    def test_unknown_word_is_invalid(self):
+        new_game = Game()
+        new_game.grid = list('KWIENFUQW')
+        self.assertIs(new_game.is_valid('FEUN'), False)
 

@@ -2,6 +2,8 @@
     class Game
 """
 import random
+import requests
+import json
 
 class Game():
     """
@@ -26,6 +28,8 @@ class Game():
         for letter in to_test:
             if letter not in self.grid:
                 ret = False
+            else:
+                ret = self.__check(to_test)
         return ret
 
     def get_grid(self):
@@ -33,3 +37,15 @@ class Game():
             return grid
         """
         return self.grid
+
+    def __check(self,word):
+        """
+            Private function to check is a word is a valid one
+        """
+        ret = False
+
+        req = requests.get("https://wagon-dictionary.herokuapp.com/"+word)
+        req_answer = req.json()
+        ret = req_answer['found']
+
+        return ret
