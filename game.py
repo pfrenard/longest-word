@@ -2,6 +2,7 @@
     class Game
 """
 import random
+import requests
 
 class Game():
     """
@@ -33,3 +34,14 @@ class Game():
             return grid
         """
         return self.grid
+
+    def __check_in_english_dictionary(self,word):
+        """
+            Private function to check is a word is a valid one
+        """
+        ret = False
+
+        req = requests.get("https://wagon-dictionary.herokuapp.com/:"+word)
+        print(f"Json {r.json}")
+
+        return ret
